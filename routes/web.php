@@ -12,7 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $links = [
+        'https://juarisco.dev/laravel' => 'Curso de Laravel',
+        'https://laravel.com' => 'Página de Laravel',
+    ];
+
+    return view('welcome', [
+        // 'teacher' => 'Mr. Juarisco',
+        'links' => $links
+    ]);
 });
 
 Route::get('/acerca', function () {
