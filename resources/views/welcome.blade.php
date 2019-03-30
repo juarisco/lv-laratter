@@ -13,15 +13,16 @@
 
 <div class="row">
     <form action="/messages/create" method="post" enctype="multipart/form-data">
-    {{ csrf_field() }}
+        {{ csrf_field() }}
         <div class="form-group">
-            <input type="text" name="message" class="form-control {{ $errors->has('message') ? 'is-invalid' : '' }}" placeholder="Qué estás pensando?" autofocus>
+
+            <input id="message" type="text" class="form-control{{ $errors->has('message') ? ' is-invalid' : '' }}" name="message" placeholder="Qué estás pensando?" autofocus>
+
             @if ($errors->has('message'))
-                <div class="invalid-feedback" role="alert">
+                <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('message') }}</strong>
-                </div>
+                </span>
             @endif
-            {{-- <input type="file" class="form-control-file" name="image"> --}}
         </div>
     </form>
 </div>   
