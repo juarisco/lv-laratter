@@ -30,11 +30,7 @@
 <div class="row">
     @forelse ($messages as $message)
         <div class="col-6">
-            <img src="{{ $message->image }}" alt="" class="img-thumbnail">
-            <p class="card-text">
-                {{ $message->content }}
-                <a href="/messages/{{ $message->id }}">Leer mas</a>
-            </p>
+            @include('messages.message')
         </div>
     @empty
         <p>No hay mensajes destacados.</p>
