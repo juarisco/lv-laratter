@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Conversation;
+use App\PrivateMessage;
 
 class UsersController extends Controller
 {
@@ -55,6 +57,36 @@ class UsersController extends Controller
         return view('users.follows', [
             'user' => $user,
             'follows' => $user->followers,
+        ]);
+    }
+
+    public function sendPrivateMessage($username, Request $request)
+    {
+        $user = $this->findByUsername($username);
+
+        $me = $request->user();
+        $message = $request->message;
+
+        $conversation = Conversation::create();
+        $conversation->users()->attach($me);
+        $conversation->users()->attach($user);
+
+        $privateMessage = PrivateMessage::create([
+            'conversation_id' => $conversation->id,
+            'user_id' => $me->id,
+            'message' => $message,
+        ]);
+
+        return redirect('/conversations/' . $conversation->id);
+    }
+
+    public function showConversation(Conversation $conversation)
+    {
+        $conversation->load('users', 'privateMessages');
+
+        return view('users.conversation', [
+            'conversation' => $conversation,
+            'user' => auth()->user()
         ]);
     }
 
