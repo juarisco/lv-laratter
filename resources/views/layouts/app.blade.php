@@ -27,7 +27,17 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav">
-                    &nbsp;
+                    <li class="nav-item">
+                        <form action="/messages">
+                            {{-- {{ csrf_field() }} --}}
+                            <div class="input-group">
+                                <input class="form-control" type="text" name="query" placeholder="Search" required>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-outline-success">Search</button>
+                                </span>
+                            </div>
+                        </form>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
