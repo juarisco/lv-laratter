@@ -23,6 +23,7 @@
                     <strong>{{ $errors->first('message') }}</strong>
                 </span>
             @endif
+            <input type="file" class="form-control-file" name="image">
         </div>
     </form>
 </div>   
