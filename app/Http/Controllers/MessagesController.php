@@ -44,6 +44,9 @@ class MessagesController extends Controller
 
     public function responses(Message $message)
     {
-        return $message->responses;
+        $responses = $message->responses;
+        $responses->load('user');
+
+        return $responses;
     }
 }
