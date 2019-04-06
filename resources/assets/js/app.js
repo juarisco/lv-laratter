@@ -20,6 +20,11 @@ Vue.component(
   require("./components/ResponsesComponent.vue").default
 );
 
+Vue.component(
+  "notifications-component",
+  require("./components/NotificationsComponent.vue").default
+);
+
 const app = new Vue({
   el: "#app"
 });
