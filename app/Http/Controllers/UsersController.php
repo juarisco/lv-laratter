@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Illuminate\Http\Request;
 use App\Conversation;
 use App\PrivateMessage;
+use Illuminate\Http\Request;
+use App\Notifications\UserFollowed;
 
 class UsersController extends Controller
 {
@@ -27,6 +28,8 @@ class UsersController extends Controller
         $me = $request->user();
 
         $me->follows()->attach($user);
+
+        $user->notify(new UserFollowed($me));
 
         return redirect("/$username")->withSuccess('Usuario seguido!');
     }
