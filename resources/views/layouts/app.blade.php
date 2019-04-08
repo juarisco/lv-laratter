@@ -31,9 +31,9 @@
                         <form action="/messages">
                             {{-- {{ csrf_field() }} --}}
                             <div class="input-group">
-                                <input class="form-control" type="text" name="query" placeholder="Search" required>
+                                <input class="form-control" type="text" name="query" placeholder="@lang('app.search')..." required>
                                 <span class="input-group-btn">
-                                    <button class="btn btn-outline-success">Search</button>
+                                    <button class="btn btn-outline-success">@lang('app.search')</button>
                                 </span>
                             </div>
                         </form>
@@ -42,6 +42,13 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        @if (app()->getLocale()=='es')
+                            <a href="/locale?lang=en" class="nav-link">English</a>
+                        @else
+                            <a href="/locale?lang=es" class="nav-link">Español</a>
+                        @endif
+                    </li>
                     <!-- Authentication Links -->
                     @guest
                     <li class="nav-item">
